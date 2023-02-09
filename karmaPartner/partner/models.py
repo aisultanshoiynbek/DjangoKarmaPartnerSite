@@ -20,7 +20,9 @@ class User(models.Model):
     role = models.ForeignKey('Rol', on_delete=models.PROTECT, null=True)
 
     def __str__(self):
-        return self.name, self.secondName
+        return (self.name,self.secondName)
+
+
 
 
 
@@ -40,6 +42,9 @@ class Goal(models.Model):
 
     def __str__(self):
         return self.goalName
+
+    def get_absolute_url(self):
+        return reverse('goal', kwargs = {post_id: self.pk})
 
 class Category(models.Model):
     nameCategory = models.CharField(max_length=255, db_index=True, default='partner')
